@@ -1,0 +1,6 @@
+go 1.21.6
+
+use (
+	./projects/cli-files/go-cat
+	./projects/cli-files/go-ls
+)
