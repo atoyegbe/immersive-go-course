@@ -1,19 +1,37 @@
 package cmd
 
 import (
-	"os"
 	"fmt"
+	"os"
+	"strings"
 )
 
 func Execute() {
 
-	dir := os.Args[1]
-	files, err := os.ReadDir(dir)
-	if err != nil {
-		fmt.Print("Error while reading currecnt directory")
-		os.Exit(1)
-	}
-	for _, file := range files {
-		fmt.Println(file)
+	commands := os.Args[1:]
+	var addComma = false
+	for _, command := range commands {
+		if strings.HasPrefix(command, "-") {
+			if command == "-m" {
+				addComma = true
+			} else {
+				fmt.Printf("Unknown option: %s\n", command)
+			}
+			continue
+		}
+		files, err := os.ReadDir(command)
+		if err != nil {
+			fmt.Print("Error while reading current directory")
+			os.Exit(1)
+		}
+		if addComma {
+			for _, file := range files {
+				fmt.Print(file, ",")
+			}
+		} else {
+			for _, file := range files {
+				fmt.Println(file)
+			}
+		}
 	}
 }

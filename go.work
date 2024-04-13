@@ -1,6 +1,12 @@
-go 1.21.6
+go 1.22.0
 
 use (
+	./projects/batch-processing
+	./projects/buggy-app
 	./projects/cli-files/go-cat
 	./projects/cli-files/go-ls
+	./projects/file-parsing
+	./projects/grpc-client-server
+	./projects/http-auth
+	./projects/output-and-error-handling/server
 )
